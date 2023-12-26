@@ -12,7 +12,7 @@ using Vb.Data;
 namespace Vb.Data.Migrations
 {
     [DbContext(typeof(VbDbContext))]
-    [Migration("20231223110518_Initial")]
+    [Migration("20231226230255_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
