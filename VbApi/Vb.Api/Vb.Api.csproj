@@ -38,4 +38,11 @@
       <ProjectReference Include="..\Vb.Data\Vb.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Areas\EftTransactionController\Controllers\" />
+      <Folder Include="Areas\EftTransactionController\Data\" />
+      <Folder Include="Areas\EftTransactionController\Models\" />
+      <Folder Include="Areas\EftTransactionController\Views\" />
+    </ItemGroup>
+
 </Project>
