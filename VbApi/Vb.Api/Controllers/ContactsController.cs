@@ -19,7 +19,11 @@ namespace VbApi.Controllers
         [HttpGet]
         public async Task<List<Contact>> Get()
         {
-            return await dbContext.Set<Contact>().ToListAsync();
+            var contacts = await dbContext.Set<Contact>()
+                .Include(x=>x.Customer)
+                .ToListAsync();
+            
+            return contacts;
         }
 
         [HttpGet("{id}", Name = "Get")]
@@ -28,6 +32,7 @@ namespace VbApi.Controllers
             var contact = await dbContext.Set<Contact>()
                 .Include(x=>x.Customer)
                 .SingleOrDefaultAsync(x => x.Id == id);
+            
             return contact;
         }
 

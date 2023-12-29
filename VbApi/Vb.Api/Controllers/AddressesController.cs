@@ -19,7 +19,11 @@ namespace VbApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<Address>> Get()
         {
-            return await dbContext.Set<Address>().ToListAsync();
+            var addresses = await dbContext.Set<Address>()
+                .Include(x=>x.Customer)
+                .ToListAsync();
+            
+            return addresses;
         }
 
         [HttpGet("{id}", Name = "Get")]
@@ -28,6 +32,7 @@ namespace VbApi.Controllers
             var address = await dbContext.Set<Address>()
                 .Include(x=>x.Customer)
                 .SingleOrDefaultAsync(x => x.Id == id);
+            
             return address;
         }
 

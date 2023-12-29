@@ -19,8 +19,12 @@ public class CustomersController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<Customer>> Get()
     {
-        return await dbContext.Set<Customer>()
+        var customers = await dbContext.Set<Customer>()
+            .Include(x => x.Accounts)
+            .Include(x => x.Addresses)
+            .Include(x => x.Contacts)
             .ToListAsync();
+        return customers;
     }
 
     [HttpGet("{id}")]

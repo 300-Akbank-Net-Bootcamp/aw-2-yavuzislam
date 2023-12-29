@@ -19,7 +19,11 @@ namespace VbApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<EftTransaction>> Get()
         {
-            return await dbContext.Set<EftTransaction>().ToListAsync();
+            var eftTransactions = await dbContext.Set<EftTransaction>()
+                .Include(x => x.Account)
+                .ToListAsync();
+            
+            return eftTransactions;
         }
 
         [HttpGet("{id}", Name = "Get")]
@@ -28,6 +32,7 @@ namespace VbApi.Controllers
             var eftTransaction = await dbContext.Set<EftTransaction>()
                 .Include(x => x.Account)
                 .SingleOrDefaultAsync(x => x.Id == id);
+            
             return eftTransaction;
         }
 
